@@ -1,14 +1,14 @@
 package no.fintlabs.consumer.model.otstatus;
 
-import no.fint.model.resource.utdanning.kodeverk.OTStatusResource;
+import no.fint.model.resource.utdanning.kodeverk.OtStatusResource;
 import no.fintlabs.core.consumer.shared.ConsumerProps;
 import no.fintlabs.core.consumer.shared.resource.ConsumerConfig;
 import org.springframework.stereotype.Component;
 
 @Component
-public class OTStatusConfig extends ConsumerConfig<OTStatusResource> {
+public class OtStatusConfig extends ConsumerConfig<OtStatusResource> {
 
-    public OTStatusConfig(ConsumerProps consumerProps) {
+    public OtStatusConfig(ConsumerProps consumerProps) {
         super(consumerProps);
     }
 

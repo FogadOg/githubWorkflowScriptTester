@@ -1,7 +1,7 @@
 package no.fintlabs.consumer.model.otenhet;
 
 import no.fint.model.felles.kompleksedatatyper.Identifikator;
-import no.fint.model.resource.utdanning.kodeverk.OTEnhetResource;
+import no.fint.model.resource.utdanning.kodeverk.OtStatusResource;
 import no.fintlabs.cache.Cache;
 import no.fintlabs.cache.CacheManager;
 import no.fintlabs.cache.packing.PackingTypes;
@@ -14,49 +14,49 @@ import javax.annotation.PostConstruct;
 import java.util.Optional;
 
 @Service
-public class OTEnhetService extends CacheService<OTEnhetResource> {
+public class OtEnhetService extends CacheService<OtStatusResource> {
 
-    private final OTEnhetKafkaConsumer elevfravarKafkaConsumer;
-    private final OTEnhetLinker linker;
+    private final OtEnhetKafkaConsumer elevfravarKafkaConsumer;
+    private final OtEnhetLinker linker;
 
-    public OTEnhetService(
-            OTEnhetConfig config,
+    public OtEnhetService(
+            OtEnhetConfig config,
             CacheManager cacheManager,
-            OTEnhetKafkaConsumer kafkaConsumer,
-            OTEnhetLinker linker) {
+            OtEnhetKafkaConsumer kafkaConsumer,
+            OtEnhetLinker linker) {
         super(config, cacheManager, kafkaConsumer);
         this.elevfravarKafkaConsumer = kafkaConsumer;
         this.linker = linker;
     }
 
     @Override
-    protected Cache<OTEnhetResource> initializeCache(CacheManager cacheManager, ConsumerConfig<OTEnhetResource> consumerConfig, String s) {
+    protected Cache<OtStatusResource> initializeCache(CacheManager cacheManager, ConsumerConfig<OtStatusResource> consumerConfig, String s) {
         return cacheManager.create(PackingTypes.POJO, consumerConfig.getOrgId(), consumerConfig.getResourceName());
     }
 
     @PostConstruct
     private void registerKafkaListener() {
-        long retension = elevfravarKafkaConsumer.registerListener(OTEnhetResource.class, this::addResourceToCache);
+        long retension = elevfravarKafkaConsumer.registerListener(OtStatusResource.class, this::addResourceToCache);
         getCache().setRetentionPeriodInMs(retension);
     }
 
-    private void addResourceToCache(ConsumerRecord<String, OTEnhetResource> consumerRecord) {
+    private void addResourceToCache(ConsumerRecord<String, OtStatusResource> consumerRecord) {
         this.eventLogger.logDataRecieved();
         if (consumerRecord.value() == null) {
             getCache().remove(consumerRecord.key());
         } else {
-            OTEnhetResource OTEnhetResource = consumerRecord.value();
-            linker.mapLinks(OTEnhetResource);
-            getCache().put(consumerRecord.key(), OTEnhetResource, linker.hashCodes(OTEnhetResource));
+            OtStatusResource OtStatusResource = consumerRecord.value();
+            linker.mapLinks(OtStatusResource);
+            getCache().put(consumerRecord.key(), OtStatusResource, linker.hashCodes(OtStatusResource));
         }
     }
 
     @Override
-    public Optional<OTEnhetResource> getBySystemId(String systemId) {
+    public Optional<OtStatusResource> getBySystemId(String systemId) {
         return getCache().getLastUpdatedByFilter(systemId.hashCode(),
                 resource -> Optional
                         .ofNullable(resource)
-                        .map(OTEnhetResource::getSystemId)
+                        .map(OtStatusResource::getSystemId)
                         .map(Identifikator::getIdentifikatorverdi)
                         .map(systemId::equals)
                         .orElse(false));
