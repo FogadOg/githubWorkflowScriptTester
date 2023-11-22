@@ -101,11 +101,9 @@ jobs:
       - name: replacer
         id: replacer
         run: | 
-          newData=$(node index.js ${{matrix.org}} ${{ steps.environment.outputs.result }})
+          newData=$(node index.js ${{matrix.org}} ${{ steps.environment.outputs.result }} ${{ steps.bake.outputs.manifests }} )
           echo "::set-output name=my_output::$newData"
             
-      - name: Print returned data
-        run: |
-          echo "Returned data: ${{ steps.replacer.outputs.my_output }}"
+    #${{ steps.replacer.outputs.my_output }}
 
 

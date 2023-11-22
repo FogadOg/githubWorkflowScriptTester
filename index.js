@@ -1,5 +1,6 @@
 const args = process.argv; // This gets the command line arguments, excluding node and the script file
 
+console.log("arg[4]: ",args[4]);
 
 function replaceEnvAndOrg(org, env, fileContent){
     fileContent=String(fileContent)
