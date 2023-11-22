@@ -98,7 +98,7 @@ jobs:
           kustomizationPath: 'kustomize/overlays/${{ steps.environment.outputs.result }}/${{ matrix.org }}'
 
         
-      - name:
+      - name: replacer
         run: | 
           node index.js "param1" "param2" "param3"
 
