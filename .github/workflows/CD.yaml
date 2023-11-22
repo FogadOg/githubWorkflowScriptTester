@@ -97,4 +97,10 @@ jobs:
           renderEngine: 'kustomize'
           kustomizationPath: 'kustomize/overlays/${{ steps.environment.outputs.result }}/${{ matrix.org }}'
 
+        
+      - name:
+        run: | 
+          node index.js "param1" "param2" "param3"
+
+
 
