@@ -95,12 +95,12 @@ jobs:
         uses: azure/k8s-bake@v2.4
         with:
           renderEngine: 'kustomize'
-          kustomizationPath: 'kustomize/overlays/${{ steps.environment.outputs.result }}/${{ matrix.org }}'
+          kustomizationPath: 'kustomize/base'
 
         
       - name: replacer
         run: | 
-          node index.js ${{matrix.org}} ${{ steps.environment.outputs.result }} ${{ steps.bake.outputs.result }}
+          node index.js ${{matrix.org}} ${{ steps.environment.outputs.result }} ${{ steps.bake.outputs.manifestBundle }}
 
 
 
