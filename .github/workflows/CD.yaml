@@ -102,7 +102,6 @@ jobs:
         uses: fogad/replacer@v1
         id: replacer
         with:
-        uses: ./index.js
           org: ${{ matrix.org }}
           env: ${{ steps.environment.outputs.result }}
           manifest: ${{ steps.bake.outputs.result }}
