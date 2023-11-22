@@ -100,8 +100,13 @@ jobs:
         
       - name: replacer
         id: replacer
-        run: | 
-          newData=$(node index.js ${{matrix.org}} ${{ steps.environment.outputs.result }} ${{ steps.bake.outputs.manifests }} )
+        uses: fogad/replacer@v1
+        with:
+          org: ${{matrix.org}}
+          env: ${{matrix.env}}
+          manifest: ${{ steps.environment.outputs.result }})
+          
+          newData=$(node index.js  
           echo "::set-output name=my_output::$newData"
             
     #${{ steps.replacer.outputs.my_output }}
