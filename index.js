@@ -12,4 +12,4 @@ function replaceEnvAndOrg(org, env, fileContent){
     return substitutedText
 }
 
-console.log(replaceEnvAndOrg(args[2], args[3],"This gets {org} the command line arguments, {env} excluding node and the script file"))
+replaceEnvAndOrg(args[2], args[3],"This gets {org} the command line arguments, {env} excluding node and the script file")
