@@ -103,10 +103,12 @@ jobs:
         id: replacer
         with:
         uses: ./index.js
-          org: ${{matrix.org}}
-          env: ${{matrix.cluster}}
+          org: ${{ matrix.org }}
+          env: ${{ steps.environment.outputs.result }}
           manifest: ${{ steps.bake.outputs.result }}
             
     #${{ steps.replacer.outputs.my_output }}
+
+
 
 
