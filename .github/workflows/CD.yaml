@@ -99,12 +99,14 @@ jobs:
 
         
       - name: replacer
+        uses: fogad/replacer@v1
         id: replacer
-        # uses: fogad/replacer@v1
         with:
+        uses: ./index.js
           org: ${{matrix.org}}
-          env: ${{matrix.env}}
-          manifest: ${{ steps.environment.outputs.result }})
-
+          env: ${{matrix.cluster}}
+          manifest: ${{ steps.bake.outputs.result }}
+            
+    #${{ steps.replacer.outputs.my_output }}
 
 

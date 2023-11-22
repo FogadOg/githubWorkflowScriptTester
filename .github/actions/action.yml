@@ -1,0 +1,19 @@
+name: 'Replace' 
+descrption: 'replace words'
+inputs:
+  org:
+    description: 'org'
+    required: true
+
+  env:
+    description: 'env'
+    required: true
+
+  manifest:
+    description: 'manifest'
+    required: true
+
+  
+runs:
+  using: 'node12'
+  main: index.js
