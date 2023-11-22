@@ -100,7 +100,7 @@ jobs:
         
       - name: replacer
         run: | 
-          node index.js ${{matrix.org}} ${{matrix.cluster}} "param3"
+          node index.js ${{matrix.org}} ${{ steps.environment.outputs.result }} ${{ steps.bake.outputs.result }}
 
 
 
