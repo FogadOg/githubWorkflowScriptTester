@@ -105,10 +105,6 @@ jobs:
           org: ${{matrix.org}}
           env: ${{matrix.env}}
           manifest: ${{ steps.environment.outputs.result }})
-          
-          newData=$(node index.js  
-          echo "::set-output name=my_output::$newData"
-            
-    #${{ steps.replacer.outputs.my_output }}
+
 
 
