@@ -1,6 +1,6 @@
-const org = process.argv[1];
-const env = process.argv[2];
-const fileContent = process.argv[3];
+const org = process.argv[0];
+const env = process.argv[1];
+const fileContent = process.argv[2];
 
 console.log('Arguments passed org:', org);
 console.log('Arguments passed env:', env);
