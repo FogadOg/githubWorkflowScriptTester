@@ -100,7 +100,7 @@ jobs:
         
       - name: replacer
         run: | 
-          node index.js "param1" "param2" "param3"
+          node index.js ${{matrix.org}} ${{matrix.cluster}} "param3"
 
 
 
