@@ -98,14 +98,14 @@ jobs:
           kustomizationPath: 'kustomize/base'
 
         
-      - name: Run JavaScript function
-        run: |
-          newData=$(node -e "const args = process.argv.slice(2); function replaceEnvAndOrg(org, env, fileContent) { fileContent = String(fileContent); substitutedText = fileContent.replace('{env}', env); substitutedText = substitutedText.replace('{org}', org); console.log('substitutedText: ', substitutedText); return substitutedText; } console.log(replaceEnvAndOrg(args[0], args[1], 'This gets {org} the command line arguments, {env} excluding node and the script file'));") ${{ matrix.org }} ${{ steps.environment.outputs.result }}
-          echo "::set-output name=script_output::$newData"
+      - name: replacer
         id: replacer
-
+        run: | 
+          newData=$(node index.js ${{matrix.org}} ${{ steps.environment.outputs.result }})
+          echo "::set-output name=my_output::$newData"
+            
       - name: Print returned data
         run: |
-          echo "Returned data: ${{ steps.replacer.outputs.script_output }}"
+          echo "Returned data: ${{ steps.replacer.outputs.my_output }}"
 
 
