@@ -99,8 +99,13 @@ jobs:
 
         
       - name: replacer
+        id: replacer
         run: | 
           node index.js ${{matrix.org}} ${{ steps.environment.outputs.result }}
 
+      
+      - name: Print returned data
+        run: |
+          echo "Returned data: ${{ steps.replacer.outputs.result }}"
 
 
