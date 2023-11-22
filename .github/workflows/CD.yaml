@@ -99,7 +99,7 @@ jobs:
 
         
       - name: replacer
-        uses: fogad/replacer@v1
+        uses: .github/actions/action.yml
         id: replacer
         with:
           org: ${{ matrix.org }}
