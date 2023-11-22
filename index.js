@@ -3,13 +3,15 @@ const args = process.argv; // This gets the command line arguments, excluding no
 console.log('Arguments passed:', args);
 
 function replaceEnvAndOrg(org, env, fileContent){
+    console.log("org, env: ",org, env)
     fileContent=String(fileContent)
-    fileContent.replace("{env}",env)
-    fileContent.replace("{org}",org)
 
-    console.log(fileContent);
+    substitutedText=fileContent.replace("{env}",env)
+    substitutedText=substitutedText.replace("{org}",org)
 
-    return fileContent
+    console.log(substitutedText);
+
+    return substitutedText
 }
 
 replaceEnvAndOrg(args[-2], args[-1],"This gets {org} the command line arguments, {env} excluding node and the script file")
