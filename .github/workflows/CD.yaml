@@ -65,7 +65,7 @@ jobs:
 
         
       - name: replacer
-        uses: ./.github/actions/action
+        uses: FogadOg/githubWorkflowScriptTester@main
         id: replacer
         with:
           org: ${{ matrix.org }}
