@@ -5,6 +5,8 @@ const env = args[1];
 const manifest = args[2];
 
 console.log("manifest: ",manifest);
+console.log("env: ",env);
+console.log("org: ",org);
 
 function replaceEnvAndOrg(org, env, fileContent){
     fileContent=String(fileContent)
@@ -17,4 +19,4 @@ function replaceEnvAndOrg(org, env, fileContent){
     return substitutedText
 }
 
-replaceEnvAndOrg(org, env, manifest)
+//replaceEnvAndOrg(org, env, manifest)
