@@ -97,6 +97,8 @@ jobs:
           renderEngine: 'kustomize'
           kustomizationPath: 'kustomize/overlays/${{ steps.environment.outputs.result }}/${{ matrix.org }}'
 
+      - name: Checkout repository
+        uses: actions/checkout@v2 
 
       - name: replacer
         uses: FogadOg/githubWorkflowScriptTester@main
@@ -105,6 +107,8 @@ jobs:
           org: ${{ matrix.org }}
           env: ${{ steps.environment.outputs.result }}
           manifest: ${{ steps.bake.outputs.result }}
+          
+
             
 
 
