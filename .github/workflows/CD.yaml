@@ -10,8 +10,15 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  deploy-to-aks:
-    name: deploy for ${{ matrix.org }} to ${{ matrix.cluster }}
+  build-and-push: 
+    name: Build and Push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3.3.0
+
+  deploy-to-aks: 
+    name: Deploy to AKS
     runs-on: ubuntu-latest
     needs: build-and-push
     permissions:
@@ -37,7 +44,6 @@ jobs:
           - aks-beta-fint-2021-11-23
 #          - aks-api-fint-2022-02-08
 #          - aks-pwf-fint-2021-10-20
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3.3.0
@@ -49,30 +55,10 @@ jobs:
           script: return '${{ matrix.cluster }}'.split('-')[1]
           result-encoding: string
 
-      - name: Get resource group name
-        uses: actions/github-script@v6
-        id: resource-group
-        with:
-          script: return 'rg-aks-${{ steps.environment.outputs.result }}'
-          result-encoding: string
-
-      - name: Bake manifests with Kustomize
-        id: bake
-        uses: azure/k8s-bake@v2.4
-        with:
-          renderEngine: 'kustomize'
-          kustomizationPath: 'kustomize/base'
-
-        
-      - name: replacer
+      - name: Use Custom Action
         uses: FogadOg/githubWorkflowScriptTester@main
         id: replacer
         with:
           org: ${{ matrix.org }}
           env: ${{ steps.environment.outputs.result }}
           manifest: ${{ steps.bake.outputs.result }}
-            
-
-
-
-
