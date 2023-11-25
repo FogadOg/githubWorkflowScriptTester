@@ -102,11 +102,6 @@ jobs:
         uses: FogadOg/githubWorkflowScriptTester@main
         id: replacer
         with:
-          entryPoint: 'index.js'
-        env:
-          REGISTRY: ghcr.io
-          IMAGE_NAME: FogadOg/githubWorkflowScriptTester
-        env:
           org: ${{ matrix.org }}
           env: ${{ steps.environment.outputs.result }}
           manifest: ${{ steps.bake.outputs.result }}
