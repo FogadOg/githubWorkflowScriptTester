@@ -97,14 +97,7 @@ jobs:
           renderEngine: 'kustomize'
           kustomizationPath: 'kustomize/overlays/${{ steps.environment.outputs.result }}/${{ matrix.org }}'
 
-      - name: Deploy
-        uses: azure/k8s-deploy@v4.9
-        with:
-          action: deploy
-          manifests: ${{ steps.bake.outputs.manifestsBundle }}
-          images: ${{ needs.build-and-push.outputs.tags }}
-          namespace: ${{ matrix.org }}
-        
+
       - name: replacer
         uses: FogadOg/githubWorkflowScriptTester@main
         id: replacer
