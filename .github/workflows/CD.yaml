@@ -102,9 +102,8 @@ jobs:
         uses: FogadOg/githubWorkflowScriptTester@main
         id: replacer
         with:
-          org: ${{ matrix.org }}
-          env: ${{ steps.environment.outputs.result }}
-          manifest: ${{ steps.bake.outputs.result }}
+          entryPoint: your-entry-point
+          args: ${{ matrix.org }} ${{ steps.environment.outputs.result }} ${{ steps.bake.outputs.result }}
             
 
 
