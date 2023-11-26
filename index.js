@@ -1,8 +1,6 @@
-const args = process.argv.slice(2);
-
-const org = args[0];
-const env = args[1];
-const manifest = args[2];
+const org = process.env.INPUT_ORG;
+const env = process.env.INPUT_ENV;
+const manifest = process.env.INPUT_MANIFEST;
 
 console.log("manifest: ",manifest);
 console.log("env: ",env);
