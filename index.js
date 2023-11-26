@@ -17,4 +17,4 @@ function replaceEnvAndOrg(org, env, fileContent){
     return substitutedText
 }
 
-//replaceEnvAndOrg(org, env, manifest)
+replaceEnvAndOrg(org, env, "manifest {org} {env}")
