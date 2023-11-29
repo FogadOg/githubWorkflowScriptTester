@@ -19,7 +19,7 @@ async function run() {
     try {
         const manifest = process.env.INPUT_MANIFEST;
 
-        const result = await replaceInFile(manifest, process.env.INPUT_ENV, process.env.INPUT_ORG);
+        const result = replaceInFile(manifest, process.env.INPUT_ENV, process.env.INPUT_ORG);
         console.log("result: ",result);
 
         console.log(`::set-output name=result::${result}`);
