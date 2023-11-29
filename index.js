@@ -9,7 +9,7 @@ function replaceEnvAndOrg(org, env, fileContent){
     substitutedText=fileContent.replace("{env}",env)
     substitutedText=substitutedText.replace("{org}",org)
 
-
+    console.log(substitutedText);
     return substitutedText
 }
 
