@@ -95,11 +95,14 @@ jobs:
         uses: azure/k8s-bake@v2.4
         with:
           renderEngine: 'kustomize'
-          kustomizationPath: 'kustomize/base'
+          kustomizationPath: 'kustomize/overlays/${{ steps.environment.outputs.result }}/${{ matrix.org }}'
 
-        
+      - name: Checkout repository
+        uses: actions/checkout@v2 
+
       - name: replacer
         uses: FogadOg/githubWorkflowScriptTester/replacer@v1
+        uses: FogadOg/githubWorkflowScriptTester@main
         id: replacer
         with:
           org: ${{ matrix.org }}
