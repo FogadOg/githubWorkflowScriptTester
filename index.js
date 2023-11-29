@@ -14,6 +14,8 @@ function replaceEnvAndOrg(org, env, manifest){
 
         substitutedText=text.replace("{env}",env)
         substitutedText=substitutedText.replace("{org}",org)
+
+        console.log("substitutedText: ",substitutedText);
     
         return substitutedText
       });
