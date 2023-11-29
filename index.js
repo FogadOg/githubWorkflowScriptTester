@@ -4,8 +4,6 @@ const manifest = process.env.INPUT_MANIFEST;
 
 const fs = require("fs");
 
-console.log("manifest: ",manifest)
-///home/runner/work/_temp/baked-template-1701248034373.yaml
 function replaceEnvAndOrg(org, env, manifest){
 
     fs.readFile("config.yaml", (err, data) => {
@@ -14,8 +12,6 @@ function replaceEnvAndOrg(org, env, manifest){
 
         substitutedText=text.replace("{env}",env)
         substitutedText=substitutedText.replace("{org}",org)
-
-        console.log("substitutedText: ",substitutedText);
     
         return substitutedText
       });
