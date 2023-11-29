@@ -10,9 +10,15 @@ inputs:
   manifest:
     description: 'manifest'
     required: true
-outputs:
-  replacedData: ${{ steps.replacer.outputs.replacedData }}
+    
 
 runs:
-  using: 'node12'
-  main: index.js
+  using: 'node12'     
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Execute index.js
+      run: |
+        output=$(node index.js "${{ inputs.org }}" "${{ inputs.env }}" "${{ inputs.manifest }}")
+        echo "::set-output name=result::$output"

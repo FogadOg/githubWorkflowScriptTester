@@ -101,16 +101,15 @@ jobs:
         uses: actions/checkout@v2 
 
       - name: replacer
-        uses: FogadOg/githubWorkflowScriptTester@main
         id: replacer
+        uses: FogadOg/githubWorkflowScriptTester@main
         with:
           org: ${{ matrix.org }}
           env: ${{ steps.environment.outputs.result }}
           manifest: ${{ steps.bake.outputs.manifestsBundle }}
 
-          
       - name: Echo Replacer output
-          run: echo "Replacer Output: ${{ steps.replacer.outputs.replacer_output }}"
+        run: echo "Replacer Output: ${{ steps.replacer.outputs.specific_output_name }}" # Replace 'specific_output_name' with the actual output name from the 'FogadOg/githubWorkflowScriptTester@main' action
 
 
 
