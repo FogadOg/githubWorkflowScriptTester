@@ -34,3 +34,11 @@ jobs:
           replaceEnvAndOrg(process.env.INPUT_ORG, process.env.INPUT_ENV, process.env.INPUT_MANIFEST)');
           echo "::set-output name=substitutedText::$substitutedText"
 
+      - name: Write substituted text to file
+        run: echo "${{ steps.replace.outputs.substitutedText }}" > substitutedFile.yaml
+
+      - name: Upload substituted file
+        uses: actions/upload-artifact@v2
+        with:
+          name: substituted-file
+          path: substitutedFile.yaml
