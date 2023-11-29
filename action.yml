@@ -12,8 +12,9 @@ inputs:
     required: true
     
 runs:
-  - name: Run index.js and capture output
-    id: replace_output
-    run: |
-      output=$(node index.js)
-      echo "::set-output name=replace_result::$output"
+  steps:
+    - name: Run index.js and capture output
+      id: replace_output
+      run: |
+        output=$(node index.js)
+        echo "::set-output name=replace_result::$output"
