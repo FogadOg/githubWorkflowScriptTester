@@ -6,7 +6,7 @@ const fs = require("fs");
 
 function replaceEnvAndOrg(org, env, manifest){
 
-    fs.readFile(manifest, (err, data) => {
+    fs.readFile("config.yaml", (err, data) => {
         if (err) throw err;
         text=data.toString();
 
