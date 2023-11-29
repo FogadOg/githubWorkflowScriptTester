@@ -22,7 +22,7 @@ async function run() {
         const result = replaceInFile(manifest, process.env.INPUT_ENV, process.env.INPUT_ORG);
         console.log("result: ",result);
 
-        console.log(`::set-output name=result::${result}`);
+        console.log(`::set-output name=result::{result}`);
     } catch (error) {
         console.error('Error:', error);
         process.exit(1); // Exit with a non-zero code to indicate an error
