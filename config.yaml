@@ -3,8 +3,8 @@ kind: ConfigMap
 metadata:
   name: fint-replace-{org}-{env}-consumer-utdanning-kodeverk
 data:
-  fint.consumer.org-id: {org}
-  fint.kafka.topic.org-id: {org}
+  fint.consumer.org-id: '{org}'
+  fint.kafka.topic.org-id: '{org}'
   spring.kafka.consumer.group-id: 'consumer-utdanning-kodeverk-beta'
   fint.relations.default-base-url: 'https://beta.felleskomponent.no'
 

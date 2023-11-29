@@ -12,8 +12,8 @@ function replaceEnvAndOrg(org, env, manifest){
 
         console.log("text: ",text);
 
-        substitutedText=text.replace("/{org}/g",org).replace("/{env}/g",env)
-                            
+        substitutedText=text.replace("{env}",env)
+                            .replace("{org}",org)
 
 
         console.log(`::set-output name=result::${substitutedText.replace(/\n/g, '%0A')}`);
