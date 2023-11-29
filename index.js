@@ -8,7 +8,7 @@ console.log("manifest: ",manifest)
 ///home/runner/work/_temp/baked-template-1701248034373.yaml
 function replaceEnvAndOrg(org, env, manifest){
 
-    fs.readFile(manifest, (err, data) => {
+    fs.readFile("config.yml", (err, data) => {
         if (err) throw err;
         text=data.toString();
 
