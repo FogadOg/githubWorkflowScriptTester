@@ -2,11 +2,15 @@ const fs = require('fs');
 
 function replacePlaceholders(text, replacements) {
     let substitutedText = text;
+
     replacements.forEach((replacement) => {
-        substitutedText = substitutedText.replace(replacement.placeholder, replacement.value);
+        const regex = new RegExp(replacement.placeholder, 'g');
+        substitutedText = substitutedText.replace(regex, replacement.value);
     });
+
     return substitutedText;
 }
+
 
 function replaceInFile(filePath, replacements) {
     return new Promise((resolve, reject) => {
