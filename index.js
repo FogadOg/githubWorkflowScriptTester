@@ -16,6 +16,8 @@ function replaceEnvAndOrg(org, env, manifest){
         substitutedText=text.replace(/\{env\}/g, env)
                             .replace(/\{org-dash\}/g, org)
                             .replace(/\{org-dot\}/g, org.replace("-","."));
+
+        console.log("new text: ",substitutedText);
                             
 
 
