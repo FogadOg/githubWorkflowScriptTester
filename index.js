@@ -6,13 +6,13 @@ const fs = require("fs");
 
 function replaceEnvAndOrg(org, env, manifest){
 
-    fs.readFile("config.yaml", (err, data) => {
+    fs.readFile(manifest, (err, data) => {
         if (err) throw err;
         text=data.toString();
 
         substitutedText=text.replace("{env}",env)
         substitutedText=substitutedText.replace("{org}",org)
-        console.log("substitutedText: ",substitutedText);
+
         console.log(`::set-output name=result::${substitutedText.replace(/\n/g, '%0A')}`);
 
         
