@@ -12,7 +12,7 @@ function replaceEnvAndOrg(org, env, manifest){
 
         substitutedText=text.replace("{env}",env)
         substitutedText=substitutedText.replace("{org}",org)
-        
+        console.log(substitutedText);
         return substitutedText
       });
 
