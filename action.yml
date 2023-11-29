@@ -11,7 +11,6 @@ inputs:
     description: 'manifest'
     required: true
     
-
 runs:
   using: 'node12'
   main: index.js

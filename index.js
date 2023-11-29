@@ -14,6 +14,7 @@ function replaceEnvAndOrg(org, env, manifest, callback){
         console.log(substitutedText);
 
         process.stdout.write(substitutedText);
+        callback(substitutedText);
     });
 }
 
