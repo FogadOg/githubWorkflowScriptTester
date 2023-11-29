@@ -12,7 +12,7 @@ inputs:
     required: true
     
 outputs:
-  result:
+  result: some test text
     description: 'the file with the substituted words'
 
 runs:
