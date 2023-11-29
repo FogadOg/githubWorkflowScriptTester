@@ -1,20 +1,26 @@
+const org = process.env.INPUT_ORG;
+const env = process.env.INPUT_ENV;
+const manifest = process.env.INPUT_MANIFEST;
+
 const fs = require("fs");
 
-function replaceEnvAndOrg(org, env, manifest) {
-    return new Promise((resolve, reject) => {
-        fs.readFile("config.yaml", (err, data) => {
-            if (err) reject(err);
-            let text = data.toString();
+function replaceEnvAndOrg(org, env, manifest){
 
-            let substitutedText = text.replace("{env}", env);
-            substitutedText = substitutedText.replace("{org}", org);
-            console.log(substitutedText);
+    fs.readFile("config.yaml", (err, data) => {
+        if (err) throw err;
+        text=data.toString();
 
-            process.stdout.write(substitutedText); // Outputting the substituted text to the stdout
+        substitutedText=text.replace("{env}",env)
+        substitutedText=substitutedText.replace("{org}",org)
+        
+        return substitutedText
+      });
 
-            resolve(substitutedText); // Resolve the promise with the substituted text
-        });
-    });
+
+    
+
 }
 
-module.exports = replaceEnvAndOrg;
+replaceEnvAndOrg(org, env, manifest)
+
+
