@@ -109,7 +109,8 @@ jobs:
           manifest: ${{ steps.bake.outputs.manifestsBundle }}
 
       - name: Echo Replacer output
-        run: echo "Replacer Output: ${{ steps.replacer.outputs.result }}
+        run: | 
+          echo "Replacer Output: ${{ steps.replacer.outputs.result }}
 
 
 
