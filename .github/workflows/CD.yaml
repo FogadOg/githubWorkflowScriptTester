@@ -102,7 +102,7 @@ jobs:
 
       - name: replacer
         id: replacer
-        uses: FogadOg/githubWorkflowScriptTester@main
+        uses: FogadOg/githubWorkflowScriptTester
         with:
           org: ${{ matrix.org }}
           env: ${{ steps.environment.outputs.result }}
