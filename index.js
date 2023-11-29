@@ -1,31 +1,27 @@
+const fs = require("fs");
+
 const org = process.env.INPUT_ORG;
 const env = process.env.INPUT_ENV;
 const manifest = process.env.INPUT_MANIFEST;
 
-const fs = require("fs");
+function replaceEnvAndOrg(org, env, manifest) {
+  fs.readFile("config.yaml", "utf8", (err, data) => {
+    if (err) {
+      throw err;
+    }
 
-function replaceEnvAndOrg(org, env, manifest){
+    let text = data.toString();
+    console.log("Original text: \n", text);
 
-    fs.readFile("config.yaml", (err, data) => {
-        if (err) throw err;
-        text=data.toString();
+    const substitutedText = text
+      .replace(/\{env\}/g, env)
+      .replace(/\{org\}/g, org);
 
-        console.log("text: ",text);
+    console.log(
+      `Substituted text: \n${substitutedText.replace(/\n/g, '%0A')}`
+    );
 
-        substitutedText=text.replace("{env}",env)
-                            .replace("{org}",org)
-
-
-        console.log(`::set-output name=result::${substitutedText.replace(/\n/g, '%0A')}`);
-
-        
-      });
-
-
-    
-
+  });
 }
 
-replaceEnvAndOrg(org, env, manifest)
-
-
+replaceEnvAndOrg(org, env, manifest);
