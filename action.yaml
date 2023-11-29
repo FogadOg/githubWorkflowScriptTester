@@ -12,9 +12,25 @@ inputs:
     required: true
     
 outputs:
-  result: "some test text"
+  result:
     description: 'the file with the substituted words'
 
-runs:
-  using: 'node12'
-  main: index.js
+jobs:
+  replace_words:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+
+      - name: Run JavaScript action
+        id: replace
+        run: |
+          substitutedText=$(node -e 'const replaceEnvAndOrg = require("./index.js");
+          replaceEnvAndOrg(process.env.INPUT_ORG, process.env.INPUT_ENV, process.env.INPUT_MANIFEST)');
+          echo "::set-output name=substitutedText::$substitutedText"
+
