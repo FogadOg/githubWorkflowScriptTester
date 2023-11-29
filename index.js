@@ -3,15 +3,18 @@ const env = process.env.INPUT_ENV;
 const manifest = process.env.INPUT_MANIFEST;
 
 console.log("manifest: ",manifest)
-
-function replaceEnvAndOrg(org, env, fileContent){
-    fileContent=String(fileContent)
-
-    substitutedText=fileContent.replace("{env}",env)
-    substitutedText=substitutedText.replace("{org}",org)
-
-    console.log("substitutedText: ",substitutedText);
-    return "substitutedText: ",substitutedText
+///home/runner/work/_temp/baked-template-1701248034373.yaml
+function replaceEnvAndOrg(org, env, manifest){
+    fetch(manifest)
+    .then((res) => res.text())
+    .then((text) => {
+    
+        substitutedText=text.replace("{env}",env)
+        substitutedText=substitutedText.replace("{org}",org)
+    
+        return substitutedText
+    })
+    .catch((e) => console.error(e));
 }
 
 replaceEnvAndOrg(org, env, manifest)
