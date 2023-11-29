@@ -13,7 +13,8 @@ inputs:
     
 
 runs:
-  using: 'node12'     
+  using: 'node12'
+  shell: bash    
   steps:
     - name: Checkout repository
       uses: actions/checkout@v2
