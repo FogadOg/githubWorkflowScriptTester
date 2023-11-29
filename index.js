@@ -1,17 +1,44 @@
-const fs = require("fs");
+const fs = require('fs');
 
-async function replaceEnvAndOrg(org, env, manifest) {
+function replacePlaceholders(text, replacements) {
+    let substitutedText = text;
+    replacements.forEach((replacement) => {
+        substitutedText = substitutedText.replace(replacement.placeholder, replacement.value);
+    });
+    return substitutedText;
+}
+
+function replaceInFile(filePath, replacements) {
     return new Promise((resolve, reject) => {
-        fs.readFile(manifest, (err, data) => {
+        fs.readFile(filePath, (err, data) => {
             if (err) reject(err);
             let text = data.toString();
 
-            let substitutedText = text.replace("{env}", env);
-            substitutedText = substitutedText.replace("{org}", org);
-            
-            resolve(substitutedText); // Resolve with the substituted text
+            const substitutedText = replacePlaceholders(text, replacements);
+            resolve(substitutedText);
         });
     });
 }
 
-module.exports = replaceEnvAndOrg;
+async function run() {
+    try {
+        const replacements = [
+            { placeholder: "{env}", value: process.env.INPUT_ENV },
+            { placeholder: "{org}", value: process.env.INPUT_ORG }
+            // Add more placeholders and their respective values if needed
+        ];
+
+        const manifest = process.env.INPUT_MANIFEST;
+
+        const result = await replaceInFile(manifest, replacements);
+        console.log(result);
+
+        // Set the output 'result'
+        console.log(`::set-output name=result::${result}`);
+    } catch (error) {
+        console.error('Error:', error);
+        process.exit(1); // Exit with a non-zero code to indicate an error
+    }
+}
+
+run();
