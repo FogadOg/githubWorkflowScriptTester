@@ -2,6 +2,7 @@ const org = process.env.INPUT_ORG;
 const env = process.env.INPUT_ENV;
 const manifest = process.env.INPUT_MANIFEST;
 
+console.log("manifest: ",manifest)
 
 function replaceEnvAndOrg(org, env, fileContent){
     fileContent=String(fileContent)
@@ -13,4 +14,4 @@ function replaceEnvAndOrg(org, env, fileContent){
     return "substitutedText: ",substitutedText
 }
 
-replaceEnvAndOrg(org, env, "manifest {org} {env}")
+replaceEnvAndOrg(org, env, manifest)
