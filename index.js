@@ -11,10 +11,12 @@ function replaceEnvAndOrg(org, env, manifest){
         if (err) throw err;
         text=data.toString();
 
-        console.log("text: ",text);
+
 
         substitutedText=text.replace(/\{env\}/g, env)
-                            .replace(/\{org\}/g, org);
+                            .replace(/\{org-dash\}/g, org)
+                            .replace(/\{org-dot\}/g, org.replace("-","."));
+                            
 
 
         console.log(`::set-output name=result::${substitutedText.replace(/\n/g, '%0A')}`);
