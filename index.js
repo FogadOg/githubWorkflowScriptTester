@@ -1,39 +1,25 @@
 const fs = require('fs');
 
-function replacePlaceholders(text, replacements) {
-    let substitutedText = text;
-
-    replacements.forEach((replacement) => {
-        const regex = new RegExp(replacement.placeholder, 'g');
-        substitutedText = substitutedText.replace(regex, replacement.value);
-    });
-
-    return substitutedText;
-}
 
 
-function replaceInFile(filePath, replacements) {
-    return new Promise((resolve, reject) => {
-        fs.readFile(filePath, (err, data) => {
-            if (err) reject(err);
-            let text = data.toString();
 
-            const substitutedText = replacePlaceholders(text, replacements);
-            resolve(substitutedText);
-        });
-    });
+function replaceInFile(filePath, env, org) {
+    fs.readFile("config.yaml", (err, data) => {
+        if (err) throw err;
+        text=data.toString();
+
+        substitutedText=text.replace("{env}",env)
+        substitutedText=substitutedText.replace("{org}",org)
+        console.log(substitutedText);
+        return substitutedText
+      });
 }
 
 async function run() {
     try {
-        const replacements = [
-            { placeholder: "{env}", value: process.env.INPUT_ENV },
-            { placeholder: "{org}", value: process.env.INPUT_ORG }
-        ];
-
         const manifest = process.env.INPUT_MANIFEST;
 
-        const result = await replaceInFile(manifest, replacements);
+        const result = await replaceInFile(manifest, process.env.INPUT_ENV, process.env.INPUT_ORG);
         console.log("result: ",result);
 
         console.log(`::set-output name=result::${result}`);
