@@ -11,6 +11,8 @@ function replaceEnvAndOrg(org, env, manifest){
         if (err) throw err;
         text=data.toString();
 
+        console.log("text: ",text);
+
         substitutedText=text.replace("{env}",env)
                             .replace("{org}",org)
 
