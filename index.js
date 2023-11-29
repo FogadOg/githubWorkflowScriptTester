@@ -11,7 +11,8 @@ function replaceEnvAndOrg(org, env, manifest) {
             console.log(substitutedText);
 
             process.stdout.write(substitutedText);
-            resolve(substitutedText); // Resolve the promise with the substituted text
+
+            resolve(substitutedText);
         });
     });
 }

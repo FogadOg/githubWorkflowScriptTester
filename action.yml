@@ -14,6 +14,7 @@ inputs:
     
 outputs:
   result:
+      description: 'the file with the substituted words'
     
 runs:
   using: 'node12'
