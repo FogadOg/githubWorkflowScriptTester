@@ -10,9 +10,9 @@ function replaceEnvAndOrg(org, env, manifest) {
             substitutedText = substitutedText.replace("{org}", org);
             console.log(substitutedText);
 
-            process.stdout.write(substitutedText);
+            process.stdout.write(substitutedText); // Outputting the substituted text to the stdout
 
-            resolve(substitutedText);
+            resolve(substitutedText); // Resolve the promise with the substituted text
         });
     });
 }
