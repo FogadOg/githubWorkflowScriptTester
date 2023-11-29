@@ -110,7 +110,7 @@ jobs:
 
       - name: Echo Replacer output
         run: | 
-          echo "Replacer Output: ${{ steps.replacer.outputs.result }}
+          echo Replacer Output: ${{ steps.replacer.outputs.result }}
 
 
 

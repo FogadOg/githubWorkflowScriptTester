@@ -13,7 +13,7 @@ inputs:
     
 
 runs:
-  using: 'python'
+  using: 'node12'     
   steps:
     - name: Checkout repository
       uses: actions/checkout@v2
