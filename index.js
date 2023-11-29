@@ -4,23 +4,19 @@ const manifest = process.env.INPUT_MANIFEST;
 
 const fs = require("fs");
 
-function replaceEnvAndOrg(org, env, manifest){
-
+function replaceEnvAndOrg(org, env, manifest, callback){
     fs.readFile("config.yaml", (err, data) => {
         if (err) throw err;
-        text=data.toString();
+        let text = data.toString();
 
-        substitutedText=text.replace("{env}",env)
-        substitutedText=substitutedText.replace("{org}",org)
+        let substitutedText = text.replace("{env}", env);
+        substitutedText = substitutedText.replace("{org}", org);
         console.log(substitutedText);
-        return substitutedText
-      });
 
-
-    
-
+        callback(substitutedText);
+    });
 }
 
-replaceEnvAndOrg(org, env, manifest)
-
-
+replaceEnvAndOrg(org, env, manifest, (result) => {
+    console.log("Result:", result);
+});
