@@ -15,7 +15,6 @@ runs:
   using: 'node12'
   main: index.js
 
-# Add a step to capture the output
 - name: Run index.js and capture output
   id: replace_output
   run: |

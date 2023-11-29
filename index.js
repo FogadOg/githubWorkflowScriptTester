@@ -13,7 +13,7 @@ function replaceEnvAndOrg(org, env, manifest, callback){
         substitutedText = substitutedText.replace("{org}", org);
         console.log(substitutedText);
 
-        callback(substitutedText);
+        process.stdout.write(substitutedText);
     });
 }
 
