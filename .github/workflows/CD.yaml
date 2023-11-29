@@ -107,11 +107,11 @@ jobs:
           org: ${{ matrix.org }}
           env: ${{ steps.environment.outputs.result }}
           manifest: ${{ steps.bake.outputs.manifestsBundle }}
-        
+
+          
       - name: Echo Replacer output
-        id: echo-replacer-output
-        run: echo "${{ steps.replacer.outputs.replacer_output }}"
-            
+          run: echo "Replacer Output: ${{ steps.replacer.outputs.replacer_output }}"
+
 
 
 
