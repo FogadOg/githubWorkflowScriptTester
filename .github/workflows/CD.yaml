@@ -101,7 +101,7 @@ jobs:
         uses: actions/checkout@v2 
 
       - name: replacer
-        uses: FogadOg/githubWorkflowScriptTester/replacer@v1
+        #uses: FogadOg/githubWorkflowScriptTester/replacer@v1
         uses: FogadOg/githubWorkflowScriptTester@main
         id: replacer
         with:
