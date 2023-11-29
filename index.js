@@ -17,11 +17,11 @@ function replaceEnvAndOrg(org, env, manifest){
                             .replace("{org}",org)
 
 
-        console.log(`::set-output name=result::${substitutedText.replace(/\n/g, '%0A')}`);
+                            
+                            
+    });
 
-        
-      });
-
+    console.log(`::set-output name=result::${substitutedText.replace(/\n/g, '%0A')}`);
 
     
 
