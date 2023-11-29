@@ -107,7 +107,7 @@ jobs:
         with:
           org: ${{ matrix.org }}
           env: ${{ steps.environment.outputs.result }}
-          manifest: replace {env} {org}
+          manifest: ${{ steps.bake.outputs.manifestsBundle }}
             
 
 
