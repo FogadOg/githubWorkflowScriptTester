@@ -109,7 +109,7 @@ jobs:
           manifest: ${{ steps.bake.outputs.manifestsBundle }}
 
       - name: Echo Replacer output
-        run: echo "Replacer Output: ${{ steps.replacer.outputs.specific_output_name }}" # Replace 'specific_output_name' with the actual output name from the 'FogadOg/githubWorkflowScriptTester@main' action
+        run: echo "Replacer Output: ${{ steps.execute_index.outputs.result }}
 
 
 
