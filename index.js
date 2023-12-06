@@ -5,32 +5,23 @@ const manifest = process.env.INPUT_MANIFEST;
 const fs = require("fs");
 
 function replaceEnvAndOrg(org, env, manifest){
-    console.log("org, env: ",org, env);
+    console.log("org, env: ", org, env);
 
     fs.readFile(manifest, (err, data) => {
         if (err) throw err;
-        text=data.toString();
+        let text = data.toString();
 
+        let substitutedText = text.replace(/\{env\}/g, env)
+                                  .replace(/\{org-dash\}/g, org)
+                                  .replace(/\{org-dot\}/g, org.replace("-", "."));
 
+        console.log("new text: ", substitutedText);
 
-        substitutedText=text.replace(/\{env\}/g, env)
-                            .replace(/\{org-dash\}/g, org)
-                            .replace(/\{org-dot\}/g, org.replace("-","."));
-
-        console.log("new text: ",substitutedText);
-                            
-
-
-        console.log(`::set-output name=result::${substitutedText.replace(/\n/g, '%0A')}`);
-
-        
-      });
-
-
-    
-
+        fs.writeFile(manifest, substitutedText, (err) => {
+            if (err) throw err;
+            console.log("File updated!");
+        });
+    });
 }
 
-replaceEnvAndOrg(org, env, manifest)
-
-
+replaceEnvAndOrg(org, env, manifest);
