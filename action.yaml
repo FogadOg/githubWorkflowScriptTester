@@ -16,5 +16,5 @@ outputs:
     description: 'the file with the substituted words'
 
 runs:
-  using: 'node12'
+  using: 'node16'
   main: index.js
